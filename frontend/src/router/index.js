@@ -181,25 +181,25 @@ export const constantRouterMap = [
       }
     ]
   },
-  {
-    path: '/repos',
-    component: Layout,
-    meta: {
-      title: 'Spider Market',
-      icon: 'fa fa-cloud'
-    },
-    children: [
-      {
-        path: '',
-        name: 'RepoList',
-        component: () => import('../views/repo/RepoList'),
-        meta: {
-          title: 'Spider Market',
-          icon: 'fa fa-cloud'
-        }
-      }
-    ]
-  },
+  // {
+  //   path: '/repos',
+  //   component: Layout,
+  //   meta: {
+  //     title: 'Spider Market',
+  //     icon: 'fa fa-cloud'
+  //   },
+  //   children: [
+  //     {
+  //       path: '',
+  //       name: 'RepoList',
+  //       component: () => import('../views/repo/RepoList'),
+  //       meta: {
+  //         title: 'Spider Market',
+  //         icon: 'fa fa-cloud'
+  //       }
+  //     }
+  //   ]
+  // },
   {
     path: '/disclaimer',
     component: Layout,

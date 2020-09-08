@@ -1,7 +1,7 @@
 <template>
   <el-scrollbar wrap-class="scrollbar-wrapper">
     <div class="sidebar-logo" :class="isCollapse ? 'collapsed' : ''">
-      <span>C</span><span v-show="!isCollapse">rawlab<span class="version">v{{ version }}</span></span>
+      <span>X</span><span v-show="!isCollapse">-crawler</span>
     </div>
     <el-menu
       :show-timeout="200"

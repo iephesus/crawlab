@@ -1,8 +1,10 @@
 version: '3.3'
 services:
   master:
-    image: tikazyq/crawlab:latest
-    container_name: master
+    build:
+      context: ./
+      dockerfile: Dockerfile.local
+    container_name: local_master
     environment:
       # CRAWLAB_API_ADDRESS: "https://<your_api_ip>:<your_api_port>"  # backend API address 后端 API 地址. 适用于 https 或者源码部署
       CRAWLAB_SERVER_MASTER: "Y"  # whether to be master node 是否为主节点，主节点为 Y，工作节点为 N
@@ -26,11 +28,10 @@ services:
       # CRAWLAB_SERVER_LANG_JAVA: "Y"  # whether to pre-install Java 预安装 Java 语言环境
       # CRAWLAB_SERVER_LANG_DOTNET: "Y"  # whether to pre-install .Net core 预安装 .Net Core 语言环境
       # CRAWLAB_SERVER_LANG_PHP: "Y"  # whether to pre-install PHP 预安装 PHP 语言环境
-      CRAWLAB_SERVER_LANG_GO: "Y"  # whether to pre-install Golang 预安装 Golang 语言环境
       # CRAWLAB_SETTING_ALLOWREGISTER: "N"  # whether to allow user registration 是否允许用户注册
       # CRAWLAB_SETTING_ENABLETUTORIAL: "N"  # whether to enable tutorial 是否启用教程
       # CRAWLAB_SETTING_RUNONMASTER: "N"  # whether to run on master node 是否在主节点上运行任务
-      CRAWLAB_SETTING_DEMOSPIDERS: "Y"  # whether to init demo spiders 是否使用Demo爬虫
+      # CRAWLAB_SETTING_DEMOSPIDERS: "Y"  # whether to init demo spiders 是否使用Demo爬虫
       # CRAWLAB_SETTING_CHECKSCRAPY: "Y"  # whether to automatically check if the spider is scrapy 是否自动检测爬虫为scrapy
       # CRAWLAB_NOTIFICATION_MAIL_SERVER: smtp.exmaple.com  # STMP server address STMP 服务器地址
       # CRAWLAB_NOTIFICATION_MAIL_PORT: 465  # STMP server port STMP 服务器端口
@@ -46,8 +47,10 @@ services:
     # volumes:
     #   - "/var/crawlab/log:/var/logs/crawlab" # log persistent 日志持久化
   worker:
-    image: tikazyq/crawlab:latest
-    container_name: worker
+    build:
+      context: ./
+      dockerfile: Dockerfile.local
+    container_name: local_master
     environment:
       CRAWLAB_SERVER_MASTER: "N"
       CRAWLAB_MONGO_HOST: "mongo"
@@ -55,26 +58,26 @@ services:
     depends_on:
       - mongo
       - redis
+    # environment:
+    #   MONGO_INITDB_ROOT_USERNAME: username
+    #   MONGO_INITDB_ROOT_PASSWORD: password
     # volumes:
     #   - "/var/crawlab/log:/var/logs/crawlab" # log persistent 日志持久化
   mongo:
     image: mongo:latest
     restart: always
-    # environment:
-    #   MONGO_INITDB_ROOT_USERNAME: username
-    #   MONGO_INITDB_ROOT_PASSWORD: password
     # volumes:
     #   - "/opt/crawlab/mongo/data/db:/data/db"  # make data persistent 持久化
-    ports:
-      - "27017:27017"  # expose port to host machine 暴露接口到宿主机
+    # ports:
+    #   - "27017:27017"  # expose port to host machine 暴露接口到宿主机
   redis:
     image: redis:latest
     restart: always
     # command: redis-server --requirepass "password" # set redis password 设置 Redis 密码
     # volumes:
     #   - "/opt/crawlab/redis/data:/data"  # make data persistent 持久化
-    ports:
-      - "6379:6379"  # expose port to host machine 暴露接口到宿主机
+    # ports:
+    #   - "6379:6379"  # expose port to host machine 暴露接口到宿主机
   # splash:  # use Splash to run spiders on dynamic pages
   #   image: scrapinghub/splash
   #   container_name: splash

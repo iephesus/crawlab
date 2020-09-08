@@ -31,9 +31,9 @@
         <el-dropdown-item>
           <span style="display:block;" @click="() => $router.push('/disclaimer')">{{ $t('Disclaimer') }}</span>
         </el-dropdown-item>
-        <el-dropdown-item>
+        <!-- <el-dropdown-item>
           <span style="display:block;" @click="() => $router.push('/feedback')">{{ $t('Feedback') }}</span>
-        </el-dropdown-item>
+        </el-dropdown-item> -->
         <el-dropdown-item>
           <span style="display:block;" @click="logout">{{ $t('Logout') }}</span>
         </el-dropdown-item>
@@ -53,19 +53,19 @@
         </el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
-    <div class="documentation right">
+    <!-- <div class="documentation right">
       <a href="http://docs.crawlab.cn" target="_blank">
         <font-awesome-icon :icon="['far', 'question-circle']" />
         <span style="margin-left: 5px;">{{ $t('Documentation') }}</span>
       </a>
-    </div>
+    </div> -->
     <div v-if="isUpgradable" class="upgrade right" @click="onClickUpgrade">
       <font-awesome-icon :icon="['fas', 'arrow-up']" />
       <el-badge is-dot>
         <span style="margin-left: 5px;">{{ $t('Upgrade') }}</span>
       </el-badge>
     </div>
-    <el-popover
+    <!-- <el-popover
       class="wechat right"
       trigger="click"
     >
@@ -78,10 +78,10 @@
       <div slot="reference">
         <i class="fa fa-wechat" />
       </div>
-    </el-popover>
-    <div class="github right">
-      <!-- Place this tag where you want the button to render. -->
-      <github-button
+    </el-popover> -->
+    <!-- <div class="github right"> -->
+    <!-- Place this tag where you want the button to render. -->
+    <!-- <github-button
         href="https://github.com/crawlab-team/crawlab"
         data-color-scheme="no-preference: light; light: light; dark: dark;"
         data-size="large"
@@ -90,8 +90,8 @@
         style="color: white"
       >
         Star
-      </github-button>
-    </div>
+      </github-button> -->
+    <!-- </div> -->
   </div>
 </template>
 
@@ -102,15 +102,15 @@
   } from 'vuex'
   import Breadcrumb from '@/components/Breadcrumb'
   import Hamburger from '@/components/Hamburger'
-  import GithubButton from 'vue-github-button'
+  // import GithubButton from 'vue-github-button'
   import showdown from 'showdown'
   import 'github-markdown-css/github-markdown.css'
 
   export default {
     components: {
       Breadcrumb,
-      Hamburger,
-      GithubButton
+      Hamburger
+      // GithubButton
     },
     data() {
       const converter = new showdown.Converter()

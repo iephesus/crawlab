@@ -47,7 +47,7 @@
   export default {
     name: 'Layout',
     components: {
-      Documentation,
+      // Documentation,   //取消右下角相关文档链接
       Navbar,
       Sidebar,
       TagsView,
